@@ -1,0 +1,11 @@
+## Preprocess the features
+
+Categorical features (Airline, AirportFrom, AirportTo) were encoded using ordinal integer encoding, mapping each unique string to an integer fitted on the training set. Numerical and already-integer features (Flight, DayOfWeek, Time, Length) were kept as it is and cast to float. One-hot encoding was avoided due to the high cardinality of features like Flight and Airport.
+
+## Hyperparameters for Decision Tree
+
+A grid search over max_depth ∈ {5, 10, 15, 20} and min_samples_split ∈ {2, 10, 20, 50, 100} was performed. The best test accuracy of 63.6% was achieved with max_depth=5, regardless of min_samples_split (Heat map of the result included). Deeper trees consistently performed worse, suggesting overfitting. Increasing min_samples_split partially mitigated overfitting for deeper trees (e.g. at depth=20, accuracy improved from 59.2% to 61.7% as min_samples_split increased from 2 to 100). Based on these results, max_depth=5 and min_samples_split=2 were selected as the final hyperparameters. 
+
+## Question 2- Comparison and Hyperparameters
+The Random Forest with the hyperparameters (n_estimators=50, max_depth=10, max_features=4, min_samples_split=2) achieved 64.5% accuracy, outperforming the single Decision Tree (63.6%)
+. Bootstrapping trains each tree on a different random sample of the data, so individual trees make uncorrelated errors that cancel out under majority voting, reducing the overall variance of the ensemble. Using max_features=4 out of 7 proved optimal for decorrelating trees — features in the range 3–5 generally performed well, with 4 yielding the best result — preventing all trees from repeatedly splitting on the same dominant features. A deeper max_depth=10 is possible in the forest even though it caused overfitting in the single Decision Tree, because averaging across 50 bootstrapped trees suppresses variance. Larger ensembles of 100 and 150 trees yielded only diminishing returns, suggesting variance reduction saturates quickly and 50 trees is already sufficient for this dataset.

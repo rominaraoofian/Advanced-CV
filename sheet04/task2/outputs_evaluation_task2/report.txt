@@ -1,0 +1,7 @@
+FID: 23.39508628845215
+
+Smiling: Acc=0.9420, F1=0.9388
+Eyeglasses: Acc=0.5158, F1=0.0770
+Male: Acc=0.8968, F1=0.9042
+Blond_Hair: Acc=0.5556, F1=0.1634
+Young: Acc=0.6820, F1=0.7544

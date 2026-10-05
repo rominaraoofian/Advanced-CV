@@ -1,0 +1,8 @@
+Using device: cuda
+Loaded weights from best_generator.pth
+
+=== Held-out TEST SET results (19962 images) ===
+Mean masked-region L1 : 0.5088  (range [-1,1], so /2 for fraction of full range)
+Mean masked-region PSNR: 13.08 dB
+
+Saved qualitative grid to eval_qualitative_grid.png
